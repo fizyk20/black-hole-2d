@@ -82,6 +82,7 @@ void Simulation::reset()
 	double uphi = sqrt(g->getM()/r/r/r);
 	ship -> setVector(0,g->convertFrom(vector4(0.0,r,M_PI/2,0.0),COORD_SPHERICAL));
 	ship -> setVector(1,vector4(1.0,0.0,0.0,uphi));
+	ship -> setTau(0.0);
 	ship -> generateBasis();
 	//emit update();
 
