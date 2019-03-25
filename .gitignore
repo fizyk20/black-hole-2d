@@ -1,0 +1,5 @@
+*.o
+moc_*
+.qmake.stash
+Black\ Hole\ 3\ mth
+Makefile
