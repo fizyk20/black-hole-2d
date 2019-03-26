@@ -8,7 +8,7 @@ public:
 	vector4();
 	vector4(double, double, double, double);
 	~vector4();
-	
+
 	vector4& operator=(const vector4&);
 	vector4 operator+(const vector4);
 	vector4 operator+=(const vector4);
@@ -19,7 +19,7 @@ public:
 	vector4 operator/(const double);
 	vector4 operator/=(const double);
 	friend vector4 operator*(const double, const vector4);
-	
+
 	double& operator[](int);
 };
 

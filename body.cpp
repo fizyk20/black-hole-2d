@@ -5,7 +5,7 @@
 CBody::CBody(vector4 init_pos, vector4 init_vel4, Geometry* g1)
 {
 	g = g1;
-	
+
 	u[0] = init_pos;
 	u[1] = init_vel4;
 	generateBasis();
@@ -46,7 +46,7 @@ void CBody::propagate(double dt, bool board) //RK4
 			if(j>0 && j<3) new_y[i] += k[j-1][i]*h*0.5;
 			if(j==3) new_y[i] += k[j-1][i]*h;
 		}
-		
+
 		k[j][0] = new_y[1];
 		constructOmega(new_y);
 		for(i=1; i<5; i++)
@@ -62,13 +62,13 @@ void CBody::propagate(double dt, bool board) //RK4
 	for(j=0; j<4; j++)
 		for(i=0; i<5; i++)
 			u[i] += coeff[j]*k[j][i]*h/6.0;
-	
+
 	//normalize phi=x[2]
 	while(u[0][3]>M_PI) u[0][3]-= 2*M_PI;
 	while(u[0][3]<-M_PI) u[0][3]+= 2*M_PI;
 	if(u[0][2]<0) u[0][2] = -u[0][2];
 	if(u[0][2]>M_PI) u[0][2] = 2*M_PI - u[0][2];
-	
+
 	orthonormalize();
 }
 
@@ -109,7 +109,7 @@ vector3 CBody::getCartesianDir(vector4 v)
 	Tensor gc = (g->g(u[0])*jac*jac).contracted(0,2).contracted(0,2);
 	vector4 dt = vector4(1,0,0,0);
 	vector4 v2 = toVector4((invjac*Vector(v)).contracted(1,2));
-	
+
 	v2 -= dt*toDouble((gc*Vector(v2)*Vector(dt)).contracted(0,2).contracted(0,1));
 	double nv2 = sqrt(v2[1]*v2[1]+v2[2]*v2[2]+v2[3]+v2[3]);
 	res[0] = v2[1]/nv2;
@@ -152,7 +152,7 @@ Tensor CBody::conversionMatrix(vector4 new_y[])
 {
 	bool a1[] = {true, false};
 	Tensor A(2,a1);
-	
+
 	int i,j;
 	for(i=0; i<4; i++)
 		for(j=0; j<4; j++)
@@ -165,21 +165,21 @@ void CBody::constructOmega(vector4 new_y[])
 	Tensor A = conversionMatrix(new_y);
 	bool a1[] = {true, false};
 	Tensor omega1(2, a1);
-	
+
 	WRITE_COMPONENT(omega1, IND(0,1), F[0]);
 	WRITE_COMPONENT(omega1, IND(1,0), F[0]);
 	WRITE_COMPONENT(omega1, IND(0,2), F[1]);
 	WRITE_COMPONENT(omega1, IND(2,0), F[1]);
 	WRITE_COMPONENT(omega1, IND(0,3), F[2]);
 	WRITE_COMPONENT(omega1, IND(3,0), F[2]);
-	
+
 	WRITE_COMPONENT(omega1, IND(1,2), -angVel[2]);
 	WRITE_COMPONENT(omega1, IND(2,1), angVel[2]);
 	WRITE_COMPONENT(omega1, IND(1,3), angVel[1]);
 	WRITE_COMPONENT(omega1, IND(3,1), -angVel[1]);
 	WRITE_COMPONENT(omega1, IND(2,3), -angVel[0]);
 	WRITE_COMPONENT(omega1, IND(3,2), angVel[0]);
-	
+
 	omega = (A*omega1).contracted(1,2);		//omega(mu,sigma) = A(mu,nu)*omega1(nu, sigma);
 }
 

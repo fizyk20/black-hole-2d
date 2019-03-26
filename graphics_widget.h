@@ -11,7 +11,7 @@ Q_OBJECT
 	double center[2];
 	double zoom;
 	bool trackShip;
-	
+
 	QPoint lastPos;
 	Simulation* sim;
 protected:
@@ -24,9 +24,9 @@ protected:
 public:
 	GraphicsWidget(QWidget* parent, Simulation*);
 	~GraphicsWidget();
-	
+
 	void setView(double, double, double); //center_x, center_y, zoom
-	
+
 	void setTrackShip(bool);
 	void drawBlackHole();
 	void drawShip();

@@ -18,7 +18,7 @@ class Tensor
 	int n;
 	bool* bInd;
 	double* components;
-	
+
 	int toComponent(int[]) const;
 	vector<int> toIndex(int) const;
 public:
@@ -26,11 +26,11 @@ public:
 	Tensor(int n_Ind, bool b_Ind[]);
 	Tensor(const Tensor&);
 	~Tensor();
-	
+
 	bool isValid();
-	
+
 	Tensor& operator=(const Tensor&);
-	
+
 	Tensor operator+(const Tensor);
 	Tensor operator+=(const Tensor);
 	Tensor operator-(const Tensor);
@@ -42,11 +42,11 @@ public:
 	friend Tensor operator*(const double, const Tensor);
 	Tensor contracted(int, int);
 	void contract(int, int);
-	
+
 	Tensor operator[](const int);
 	//Tensor at(const int, int index=0);
 	double& component(int[]);
-	
+
 	friend double toDouble(Tensor);
 	friend vector4 toVector4(Tensor);
 	friend Tensor Vector(vector4);

@@ -23,7 +23,7 @@ vector4& vector4::operator=(const vector4& arg)
 	v[1] = arg.v[1];
 	v[2] = arg.v[2];
 	v[3] = arg.v[3];
-	
+
 	return (*this);
 }
 
@@ -39,7 +39,7 @@ vector4 vector4::operator+=(const vector4 arg)
 	v[1] += arg.v[1];
 	v[2] += arg.v[2];
 	v[3] += arg.v[3];
-	
+
 	return (*this);
 }
 
@@ -55,7 +55,7 @@ vector4 vector4::operator-=(const vector4 arg)
 	v[1] -= arg.v[1];
 	v[2] -= arg.v[2];
 	v[3] -= arg.v[3];
-	
+
 	return (*this);
 }
 
@@ -71,7 +71,7 @@ vector4 vector4::operator*=(const double arg)
 	v[1] *= arg;
 	v[2] *= arg;
 	v[3] *= arg;
-	
+
 	return (*this);
 }
 
@@ -87,7 +87,7 @@ vector4 vector4::operator/=(const double arg)
 	v[1] /= arg;
 	v[2] /= arg;
 	v[3] /= arg;
-	
+
 	return (*this);
 }
 

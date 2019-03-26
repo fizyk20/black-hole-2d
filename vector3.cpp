@@ -21,7 +21,7 @@ vector3& vector3::operator=(const vector3& arg)
 	v[0] = arg.v[0];
 	v[1] = arg.v[1];
 	v[2] = arg.v[2];
-	
+
 	return (*this);
 }
 
@@ -35,7 +35,7 @@ vector3 vector3::operator+=(const vector3 arg)
 {
 	v[0] += arg.v[0];
 	v[1] += arg.v[1];
-	v[2] += arg.v[2];	
+	v[2] += arg.v[2];
 	return (*this);
 }
 
@@ -50,7 +50,7 @@ vector3 vector3::operator-=(const vector3 arg)
 	v[0] -= arg.v[0];
 	v[1] -= arg.v[1];
 	v[2] -= arg.v[2];
-	
+
 	return (*this);
 }
 
@@ -65,7 +65,7 @@ vector3 vector3::operator*=(const double arg)
 	v[0] *= arg;
 	v[1] *= arg;
 	v[2] *= arg;
-	
+
 	return (*this);
 }
 
@@ -80,7 +80,7 @@ vector3 vector3::operator/=(const double arg)
 	v[0] /= arg;
 	v[1] /= arg;
 	v[2] /= arg;
-	
+
 	return (*this);
 }
 

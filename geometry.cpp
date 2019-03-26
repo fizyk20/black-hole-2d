@@ -194,24 +194,24 @@ Tensor Geometry::Gamma_schw(vector4 pos)
 {
 	bool a[] = {true, false, false};
 	Tensor res(3, a);
-	
+
 	WRITE_COMPONENT(res, IND(0,0,1), M/(pos[1]*(pos[1]-2*M)));
 	WRITE_COMPONENT(res, IND(0,1,0), M/(pos[1]*(pos[1]-2*M)));
-	
+
 	WRITE_COMPONENT(res, IND(1,0,0), M/(pos[1]*pos[1])*(1-2*M/pos[1]));
 	WRITE_COMPONENT(res, IND(1,1,1), -M/(pos[1]*(pos[1]-2*M)));
 	WRITE_COMPONENT(res, IND(1,2,2), 2*M-pos[1]);
 	WRITE_COMPONENT(res, IND(1,3,3), (2*M-pos[1])*sin(pos[2])*sin(pos[2]));
-	
+
 	WRITE_COMPONENT(res, IND(2,1,2), 1.0/pos[1]);
 	WRITE_COMPONENT(res, IND(2,2,1), 1.0/pos[1]);
 	WRITE_COMPONENT(res, IND(2,3,3), -sin(pos[2])*cos(pos[2]));
-	
+
 	WRITE_COMPONENT(res, IND(3,1,3), 1.0/pos[1]);
 	WRITE_COMPONENT(res, IND(3,3,1), 1.0/pos[1]);
 	WRITE_COMPONENT(res, IND(3,2,3), cos(pos[2])/sin(pos[2]));
 	WRITE_COMPONENT(res, IND(3,3,2), cos(pos[2])/sin(pos[2]));
-	
+
 	return res;
 }
 
@@ -220,7 +220,7 @@ Tensor Geometry::Gamma_schw(vector4 pos)
 vector4 Geometry::convertTo_schw(vector4 x, int coords)
 {
 	vector4 pos;
-	
+
 	switch(coords)
 	{
 	case COORD_MAIN:
@@ -274,13 +274,13 @@ Tensor Geometry::g_kerr_ef(vector4 pos)
 	bool a1[] = { false, false };
 	double rho2;
 	Tensor res(2, a1);
-	
+
 	double r, th, sinth;
 	r = pos[1];
 	th = pos[2];
 	rho2 = r*r + a*a*cos(th)*cos(th);
 	sinth = sin(th)*sin(th);
-	
+
 	WRITE_COMPONENT(res, IND(0,0), 1.0-2*M*r/rho2);
 	WRITE_COMPONENT(res, IND(0,1), -1.0);
 	WRITE_COMPONENT(res, IND(1,0), -1.0);
@@ -297,14 +297,14 @@ Tensor Geometry::g_inv_kerr_ef(vector4 pos)
 {
 	bool a1[] = {true, true};
 	Tensor res(2, a1);
-	
+
 	double r, th, sinth, delta, rho2;
 	r = pos[1];
 	th = pos[2];
 	rho2 = r*r + a*a*cos(th)*cos(th);
 	sinth = sin(th)*sin(th);
 	delta = r*r + a*a - 2*M*r;
-	
+
 	WRITE_COMPONENT(res, IND(0,0), -a*a/rho2*sinth);
 	WRITE_COMPONENT(res, IND(0,1), -(r*r+a*a)/rho2);
 	WRITE_COMPONENT(res, IND(1,0), -(r*r+a*a)/rho2);
@@ -322,11 +322,11 @@ Tensor Geometry::Gamma_kerr_ef(vector4 pos)
 {
 	bool a1[] = {true, false, false};
 	Tensor res(3, a1);
-	
+
 	double r = pos[1];
 	double th = pos[2];
 	double rho2, rho4, rho6, rhobar, sinth, ra, sincos, delta;
-	
+
 	rho2 = r*r + a*a*cos(th)*cos(th);
 	rho4 = rho2*rho2;
 	rho6 = rho4*rho2;
@@ -335,7 +335,7 @@ Tensor Geometry::Gamma_kerr_ef(vector4 pos)
 	sinth = sin(th)*sin(th);
 	sincos = sin(th)*cos(th);
 	delta = r*r + a*a - 2*M*r;
-	
+
 	WRITE_COMPONENT(res, IND(0,0,0), M*ra*rhobar/rho6);
 	WRITE_COMPONENT(res, IND(0,0,2), -2*M*r*a*a/rho4*sincos);
 	WRITE_COMPONENT(res, IND(0,2,0), -2*M*r*a*a/rho4*sincos);
@@ -349,7 +349,7 @@ Tensor Geometry::Gamma_kerr_ef(vector4 pos)
 	WRITE_COMPONENT(res, IND(0,2,3), 2*M*r*a*a*a*sinth*sincos/rho4);
 	WRITE_COMPONENT(res, IND(0,3,2), 2*M*r*a*a*a*sinth*sincos/rho4);
 	WRITE_COMPONENT(res, IND(0,3,3), ra/rho2*(M*rhobar*a*a*sinth*sinth/rho4-r*sinth));
-	
+
 	WRITE_COMPONENT(res, IND(1,0,0), M*rhobar*delta/rho6);
 	WRITE_COMPONENT(res, IND(1,0,1), -M*rhobar/rho4);
 	WRITE_COMPONENT(res, IND(1,1,0), -M*rhobar/rho4);
@@ -361,7 +361,7 @@ Tensor Geometry::Gamma_kerr_ef(vector4 pos)
 	WRITE_COMPONENT(res, IND(1,3,1), (rho2*r+M*rhobar)/rho4*a*sinth);
 	WRITE_COMPONENT(res, IND(1,2,2), -delta/rho2/r);
 	WRITE_COMPONENT(res, IND(1,3,3), delta*sinth/rho6*(M*a*a*rhobar*sinth-r*rho4));
-	
+
 	WRITE_COMPONENT(res, IND(2,0,0), -2*M*r*a*a*sincos/rho6);
 	WRITE_COMPONENT(res, IND(2,0,3), 2*M*r*a*ra*sincos/rho6);
 	WRITE_COMPONENT(res, IND(2,3,0), 2*M*r*a*ra*sincos/rho6);
@@ -371,7 +371,7 @@ Tensor Geometry::Gamma_kerr_ef(vector4 pos)
 	WRITE_COMPONENT(res, IND(2,3,1), a*sincos/rho2);
 	WRITE_COMPONENT(res, IND(2,2,2), -a*a*sincos/rho2);
 	WRITE_COMPONENT(res, IND(2,3,3), -sincos/rho6*(rho4*ra+2*M*r*a*a*sinth*(ra+rho2)));
-	
+
 	WRITE_COMPONENT(res, IND(3,0,0), M*a*rhobar/rho6);
 	WRITE_COMPONENT(res, IND(3,0,2), -2*M*r*a*cos(th)/sin(th)/rho4);
 	WRITE_COMPONENT(res, IND(3,2,0), -2*M*r*a*cos(th)/sin(th)/rho4);
@@ -385,7 +385,7 @@ Tensor Geometry::Gamma_kerr_ef(vector4 pos)
 	WRITE_COMPONENT(res, IND(3,2,3), cos(th)/sin(th)/rho4*(rho2*r*r+2*M*r*a*a*sinth+rhobar*a*a*cos(th)*cos(th)));
 	WRITE_COMPONENT(res, IND(3,3,2), cos(th)/sin(th)/rho4*(rho2*r*r+2*M*r*a*a*sinth+rhobar*a*a*cos(th)*cos(th)));
 	WRITE_COMPONENT(res, IND(3,3,3), a*sinth/rho6*(M*a*a*rhobar*sinth-r*rho4));
-	
+
 	return res;
 }
 
@@ -395,7 +395,7 @@ vector4 Geometry::convertTo_kerr_ef(vector4 x, int coord)
 {
 	vector4 pos,x2;
 	double logr, delta;
-	
+
 	switch(coord)
 	{
 	case COORD_MAIN:
@@ -424,7 +424,7 @@ vector4 Geometry::convertFrom_kerr_ef(vector4 x, int coord)
 {
 	vector4 x2, pos;
 	double logr, delta;
-	
+
 	switch(coord)
 	{
 	case COORD_MAIN:
@@ -457,7 +457,7 @@ Tensor Geometry::Jacobian_kerr_ef(int coord, vector4 x)
 	double r = x[1];
 	double th = x[2];
 	double delta = r*r - 2*M*r + a*a;
-	
+
 	switch(coord)
 	{
 	case COORD_MAIN:
@@ -490,7 +490,7 @@ Tensor Geometry::Jacobian_kerr_ef(int coord, vector4 x)
 		WRITE_COMPONENT(jac, IND(3,3), a*cos(th)/delta);
 		break;
 	}
-	
+
 	return jac;
 }
 
@@ -503,7 +503,7 @@ Tensor Geometry::invJacobian_kerr_ef(int coord, vector4 x)
 	double r = x[1];
 	double th = x[2];
 	double delta = r*r - 2*M*r + a*a;
-	
+
 	switch(coord)
 	{
 	case COORD_MAIN:
@@ -533,6 +533,6 @@ Tensor Geometry::invJacobian_kerr_ef(int coord, vector4 x)
 		WRITE_COMPONENT(jac, IND(3,2), -r*sin(th));
 		break;
 	}
-	
+
 	return jac;
 }

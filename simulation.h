@@ -12,17 +12,17 @@ class Simulation : public QThread
 {
 Q_OBJECT
 	Geometry* g;
-	
+
 	CBody* ship;
 	double time_warp;
 	long time;
 	bool running;
-	
+
 	QVector<vector4> path;
 	int skip;
-	
+
 	bool board_time;
-	
+
 	QMap<int,int> keys;
 	double F_pg, F_rt, angVel;
 
@@ -31,16 +31,16 @@ Q_OBJECT
 public:
 	Simulation();
 	~Simulation();
-	
+
 	CBody* getShip();
 	QVector<vector4> getPath();
 	Geometry* geometry();
-	
+
 	void setUseBoardTime(bool);
 	bool useBoardTime();
-	
+
 	void run();
-	
+
 public slots:
 	void launch();
 	void stop();
@@ -48,7 +48,7 @@ public slots:
 	void simulate();
 	void keyPressed(int);
 	void keyReleased(int);
-	
+
 	void setPgForce(double);
 	void setRtForce(double);
 	void setAngVel(double);

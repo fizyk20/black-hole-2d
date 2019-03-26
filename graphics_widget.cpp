@@ -10,7 +10,7 @@ GraphicsWidget::GraphicsWidget(QWidget* parent, Simulation* s) : QGLWidget(paren
 	center[0] = 0.0;
 	center[1] = 0.0;
 	trackShip = false;
-	
+
 	sim = s;
 }
 
@@ -36,12 +36,12 @@ void GraphicsWidget::resizeGL(int w, int h)
 }
 
 void GraphicsWidget::paintGL()
-{	
+{
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 	glDisable(GL_DEPTH_TEST);
 	glClear(GL_COLOR_BUFFER_BIT);
-	
+
 	//draw frame
 	glBegin(GL_LINE_LOOP);
 		glColor3d(0.0,0.0,0.0);
@@ -50,15 +50,15 @@ void GraphicsWidget::paintGL()
 		glVertex2d(center[0]+3.99/zoom,center[1]-3.99*height()/width()/zoom);
 		glVertex2d(center[0]-3.99/zoom,center[1]-3.99*height()/width()/zoom);
 	glEnd();
-	
+
 	CBody* ship = sim->getShip();
 	vector4 pos = sim->geometry()->convertTo(ship->getVector(0),COORD_CARTESIAN);
-	
+
 	if(trackShip)
 		glTranslated(center[0]-pos[1], center[1]-pos[2], 0.0);
 	drawBlackHole();
 	drawShip();
-	
+
 	glFlush();
 }
 
@@ -72,7 +72,7 @@ void GraphicsWidget::mouseMoveEvent(QMouseEvent* event)
 	int dx = event->x() - lastPos.x();
 	int dy = event->y() - lastPos.y();
 	lastPos = event->pos();
-	
+
 	if(event->buttons() & Qt::LeftButton && !trackShip)
 	{
 		center[0] -= 8.0*(double)dx/(width()*zoom);
@@ -95,11 +95,11 @@ void GraphicsWidget::setView(double x, double y, double z)
 	center[0] = x;
 	center[1] = y;
 	zoom = z;
-	
+
 	double w,h;
 	w = 4.0 / zoom;
 	h = w*(double)height()/(double)width();
-	
+
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
 	glOrtho(x-w, x+w, y-h, y+h, -1.0, 1.0);
@@ -118,7 +118,7 @@ void GraphicsWidget::drawBlackHole()
 	double a = sim->geometry()->getA();
 	double r = M+sqrt(M*M-a*a);
 	int i;
-	
+
 	glBegin(GL_TRIANGLE_FAN);
 		glColor3d(0.0,0.0,0.0);
 		glVertex2d(0.0,0.0);
@@ -135,15 +135,15 @@ void GraphicsWidget::drawShip()
 {
 	CBody* ship = sim->getShip();
 	if(ship==NULL) return;
-	
+
 	vector4 pos;
 	vector3 front;
 	int i;
-	
+
 	pos = sim->geometry()->convertTo(ship->getVector(0),COORD_CARTESIAN);
 	front = ship->getCartesianDir(ship->getVector(3));
 	double angle = atan2(front[1],front[0]);
-	
+
 	//ship
 	glMatrixMode(GL_MODELVIEW);
 	glPushMatrix();

@@ -14,35 +14,35 @@ Q_OBJECT
 	QTimer* timer;
 	GraphicsWidget* gl;
 	Simulation* sim;
-	
+
 	QLineEdit *mass, *angmom;
 	QLineEdit *r, *phi, *x, *y;
 	QLineEdit *ur, *uphi, *ux, *uy;
-	
+
 	QLabel *ext_time, *board_time;
 	QLabel *vel, *proper_vel;
 	QLabel *force, *thrust_pg, *thrust_rt;
-	
+
 	QCheckBox *useBoardTime,*shipTracking;
-	
+
 	QPushButton *start, *stop, *reset;
-	
+
 	QSlider *F_slider;
-	
+
 protected:
 	void keyPressEvent(QKeyEvent* event);
 	void keyReleaseEvent(QKeyEvent* event);
 public:
-    MainWindow();
-    ~MainWindow();
-    
-    void createMenus();
-    void createComponents();
-	
+	MainWindow();
+	~MainWindow();
+
+	void createMenus();
+	void createComponents();
+
 public slots:
 	void massChanged(const QString&);
 	void angmomChanged(const QString&);
-	
+
 	void rChanged(const QString&);
 	void phiChanged(const QString&);
 	void xChanged(const QString&);
@@ -51,18 +51,18 @@ public slots:
 	void uphiChanged(const QString&);
 	void uxChanged(const QString&);
 	void uyChanged(const QString&);
-	
+
 	void stateUpdate(QObject* o = NULL);
-	
+
 	void buttonClicked();
-	
+
 	void forceChanged(int);
 	void boardTime(int);
 	void trackShip(int);
 	void timeWarp(double);
-	
+
 	void autoStop();
-	
+
 signals:
 	void enable(bool);
 	void keyPressed(int);
