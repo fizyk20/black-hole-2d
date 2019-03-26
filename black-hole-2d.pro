@@ -3,7 +3,7 @@
 ######################################################################
 
 TEMPLATE = app
-TARGET = "Black Hole 3 mth"
+TARGET = black-hole-2d
 INCLUDEPATH += .
 QT += core gui widgets opengl
 
@@ -19,20 +19,20 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 # Input
-HEADERS += body.h \
-           geometry.h \
-           graphics_widget.h \
-           MainWindow.h \
-           simulation.h \
-           tensor.h \
-           vector3.h \
-           vector4.h
-SOURCES += black_hole.cpp \
-           body.cpp \
-           geometry.cpp \
-           graphics_widget.cpp \
-           MainWindow.cpp \
-           simulation.cpp \
-           tensor.cpp \
-           vector3.cpp \
-           vector4.cpp
+HEADERS += src/body.h \
+           src/geometry.h \
+           src/graphics_widget.h \
+           src/MainWindow.h \
+           src/simulation.h \
+           src/tensor.h \
+           src/vector3.h \
+           src/vector4.h
+SOURCES += src/black_hole.cpp \
+           src/body.cpp \
+           src/geometry.cpp \
+           src/graphics_widget.cpp \
+           src/MainWindow.cpp \
+           src/simulation.cpp \
+           src/tensor.cpp \
+           src/vector3.cpp \
+           src/vector4.cpp
