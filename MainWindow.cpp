@@ -8,8 +8,8 @@
 MainWindow::MainWindow()
 {
 	setWindowTitle("Black Hole");
-	resize(1010,635);
-	setFixedSize(1010,635);
+	resize(1110,635);
+	setFixedSize(1110,635);
 	createComponents();
 	createMenus();
 	show();
@@ -36,8 +36,8 @@ void MainWindow::createComponents()
 	
 	QWidget* components = new QWidget(this);
 	components -> move(810,0);
-	components -> resize(200,600);
-	
+	components -> resize(300,600);
+
 	QGridLayout* main = new QGridLayout(components);
 	components -> setLayout(main);
 	
