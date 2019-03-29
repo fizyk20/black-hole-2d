@@ -44,15 +44,22 @@ void MainWindow::createComponents()
 	mass = new QLineEdit("0.1");
 	mass->setAlignment(Qt::AlignRight);
 	mass->setValidator(new QDoubleValidator(mass));
-	angmom = new QLineEdit("0.0");
-	angmom->setAlignment(Qt::AlignRight);
-	angmom->setValidator(new QDoubleValidator(mass));
+
+	angmom = new QSlider(Qt::Horizontal);
+	angmom -> setMinimum(0);
+	angmom -> setMaximum(100);
+	angmom -> setValue(0);
+	angmom -> setTickPosition(QSlider::TicksBelow);
+	angmom -> setTickInterval(10);
+
+	l_angmom = new QLabel("Angular momentum / mass: 0.00");
+
 	main -> addWidget(new QLabel("Black hole mass:"), 0, 0, 1, 2);
 	main -> addWidget(mass, 0, 2, 1, 2);
-	main -> addWidget(new QLabel("Angular momentum:"), 1, 0, 1, 2);
-	main -> addWidget(angmom, 1, 2, 1, 2);
+	main -> addWidget(l_angmom, 1, 0, 1, 4);
+	main -> addWidget(angmom, 2, 0, 1, 4);
 
-	main -> setRowMinimumHeight(2, ROW_MIN_H);
+	main -> setRowMinimumHeight(3, ROW_MIN_H);
 
 	//position
 	r = new QLineEdit("1.0000");
@@ -68,16 +75,16 @@ void MainWindow::createComponents()
 	y->setAlignment(Qt::AlignRight);
 	y->setValidator(new QDoubleValidator(y));
 
-	main->addWidget(new QLabel("R:"), 3, 0);
-	main->addWidget(r, 3, 1);
-	main->addWidget(new QLabel("Phi:"), 4, 0);
-	main->addWidget(phi, 4, 1);
-	main->addWidget(new QLabel("X:"), 3, 2);
-	main->addWidget(x, 3, 3);
-	main->addWidget(new QLabel("Y:"), 4, 2);
-	main->addWidget(y, 4, 3);
+	main->addWidget(new QLabel("R:"), 4, 0);
+	main->addWidget(r, 4, 1);
+	main->addWidget(new QLabel("Phi:"), 5, 0);
+	main->addWidget(phi, 5, 1);
+	main->addWidget(new QLabel("X:"), 4, 2);
+	main->addWidget(x, 4, 3);
+	main->addWidget(new QLabel("Y:"), 5, 2);
+	main->addWidget(y, 5, 3);
 
-	main -> setRowMinimumHeight(5, ROW_MIN_H);
+	main -> setRowMinimumHeight(6, ROW_MIN_H);
 
 	ur = new QLineEdit("0.0000000");
 	ur->setAlignment(Qt::AlignRight);
@@ -92,68 +99,68 @@ void MainWindow::createComponents()
 	uy->setAlignment(Qt::AlignRight);
 	uy->setValidator(new QDoubleValidator(uy));
 
-	main->addWidget(new QLabel("VR:"), 6, 0);
-	main->addWidget(ur, 6, 1);
-	main->addWidget(new QLabel("VPhi:"), 7, 0);
-	main->addWidget(uphi, 7, 1);
-	main->addWidget(new QLabel("VX:"), 6, 2);
-	main->addWidget(ux, 6, 3);
-	main->addWidget(new QLabel("VY:"), 7, 2);
-	main->addWidget(uy, 7, 3);
+	main->addWidget(new QLabel("VR:"), 7, 0);
+	main->addWidget(ur, 7, 1);
+	main->addWidget(new QLabel("VPhi:"), 8, 0);
+	main->addWidget(uphi, 8, 1);
+	main->addWidget(new QLabel("VX:"), 7, 2);
+	main->addWidget(ux, 7, 3);
+	main->addWidget(new QLabel("VY:"), 8, 2);
+	main->addWidget(uy, 8, 3);
 
-	main -> setRowMinimumHeight(8, ROW_MIN_H);
+	main -> setRowMinimumHeight(9, ROW_MIN_H);
 
 	vel = new QLabel("0.31662278");
 	proper_vel = new QLabel("0.3535534");
 	board_time = new QLabel("0.0000");
 	ext_time = new QLabel("0.0000");
 
-	main -> addWidget(new QLabel("Velocity:"), 9, 0, 1, 2);
-	main -> addWidget(vel, 9, 2, 1, 2);
-	main -> addWidget(new QLabel("Proper velocity:"), 10, 0, 1, 2);
-	main -> addWidget(proper_vel, 10, 2, 1, 2);
-	main -> addWidget(new QLabel("Time:"), 11, 0, 1, 2);
-	main -> addWidget(ext_time, 11, 2, 1, 2);
-	main -> addWidget(new QLabel("On-board time:"), 12, 0, 1, 2);
-	main -> addWidget(board_time, 12, 2, 1, 2);
+	main -> addWidget(new QLabel("Velocity:"), 10, 0, 1, 2);
+	main -> addWidget(vel, 10, 2, 1, 2);
+	main -> addWidget(new QLabel("Proper velocity:"), 11, 0, 1, 2);
+	main -> addWidget(proper_vel, 11, 2, 1, 2);
+	main -> addWidget(new QLabel("Time:"), 12, 0, 1, 2);
+	main -> addWidget(ext_time, 12, 2, 1, 2);
+	main -> addWidget(new QLabel("On-board time:"), 13, 0, 1, 2);
+	main -> addWidget(board_time, 13, 2, 1, 2);
 
-	main -> setRowMinimumHeight(13, ROW_MIN_H);
+	main -> setRowMinimumHeight(14, ROW_MIN_H);
 
 	useBoardTime = new QCheckBox("Use on-board time for simulation");
-	main -> addWidget(useBoardTime, 14, 0, 1, 4);
+	main -> addWidget(useBoardTime, 15, 0, 1, 4);
 
-	main -> setRowMinimumHeight(15, ROW_MIN_H);
+	main -> setRowMinimumHeight(16, ROW_MIN_H);
 
 	start = new QPushButton("Start", this);
-	main -> addWidget(start, 16, 0, 1, 2);
+	main -> addWidget(start, 17, 0, 1, 2);
 	stop = new QPushButton("Stop", this);
 	stop -> setEnabled(false);
-	main -> addWidget(stop, 16, 2, 1, 2);
+	main -> addWidget(stop, 17, 2, 1, 2);
 	reset = new QPushButton("Reset", this);
-	main -> addWidget(reset, 17, 0, 1, 4);
+	main -> addWidget(reset, 18, 0, 1, 4);
 
-	main -> setRowMinimumHeight(18, ROW_MIN_H);
+	main -> setRowMinimumHeight(19, ROW_MIN_H);
 
-	main -> addWidget(new QLabel("Thrust controls"), 19, 0, 1, 4);
+	main -> addWidget(new QLabel("Thrust controls"), 20, 0, 1, 4);
 
 	F_slider = new QSlider(Qt::Horizontal);
 	F_slider -> setMinimum(-80);
 	F_slider -> setMaximum(20);
 	F_slider -> setValue(-20);
 	F_slider -> setTickPosition(QSlider::TicksBelow);
-	main -> addWidget(F_slider, 20, 0, 1, 4);
+	main -> addWidget(F_slider, 21, 0, 1, 4);
 
 	force = new QLabel("Thrust: 0.1000");
-	main -> addWidget(force, 21, 0, 1, 4);
+	main -> addWidget(force, 22, 0, 1, 4);
 	thrust_pg = new QLabel("Current forward thrust:  0.0000");
 	thrust_rt = new QLabel("Current right thrust:	0.0000");
-	main -> addWidget(thrust_pg, 22, 0, 1, 4);
-	main -> addWidget(thrust_rt, 23, 0, 1, 4);
+	main -> addWidget(thrust_pg, 23, 0, 1, 4);
+	main -> addWidget(thrust_rt, 24, 0, 1, 4);
 
-	main -> setRowStretch(24, 5);
+	main -> setRowStretch(25, 5);
 
 	shipTracking = new QCheckBox("Ship tracking");
-	main -> addWidget(shipTracking, 25, 0, 1, 4);
+	main -> addWidget(shipTracking, 26, 0, 1, 4);
 
 	//connect(sim, SIGNAL(update()), this, SLOT(stateUpdate()));
 	//connect(sim, SIGNAL(update()), gl, SLOT(updateGL()));
@@ -184,7 +191,7 @@ void MainWindow::createComponents()
 	connect(this, SIGNAL(enable(bool)), uphi, SLOT(setEnabled(bool)));
 
 	connect(mass, SIGNAL(textEdited(const QString&)), this, SLOT(massChanged(const QString&)));
-	connect(angmom, SIGNAL(textEdited(const QString&)), this, SLOT(angmomChanged(const QString&)));
+	connect(angmom, SIGNAL(valueChanged(int)), this, SLOT(angmomChanged(int)));
 	connect(x, SIGNAL(textEdited(const QString&)), this, SLOT(xChanged(const QString&)));
 	connect(y, SIGNAL(textEdited(const QString&)), this, SLOT(yChanged(const QString&)));
 	connect(r, SIGNAL(textEdited(const QString&)), this, SLOT(rChanged(const QString&)));
@@ -216,16 +223,15 @@ void MainWindow::massChanged(const QString& s)
 	gl -> updateGL();
 }
 
-void MainWindow::angmomChanged(const QString& s)
+void MainWindow::angmomChanged(int val)
 {
-	double a = s.toDouble();
-	double M = sim->geometry()->getM();
-	if(a >= sim->geometry()->getM())
-	{
-		a = 0.999*M;
-		angmom->setText(QString::number(a,'f',4));
+	double a_per_M = (double) val / 100.0;
+	if(a_per_M == 1.0) {
+		a_per_M = 0.999;
 	}
-	sim->geometry()->setA(a);
+	double M = sim->geometry()->getM();
+	l_angmom->setText("Angular momentum / mass: " + QString::number(a_per_M,'f',2));
+	sim->geometry()->setA(a_per_M * M);
 	gl -> updateGL();
 }
 

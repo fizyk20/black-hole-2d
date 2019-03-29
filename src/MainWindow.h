@@ -15,10 +15,11 @@ Q_OBJECT
 	GraphicsWidget* gl;
 	Simulation* sim;
 
-	QLineEdit *mass, *angmom;
+	QLineEdit *mass;
 	QLineEdit *r, *phi, *x, *y;
 	QLineEdit *ur, *uphi, *ux, *uy;
 
+	QLabel *l_angmom;
 	QLabel *ext_time, *board_time;
 	QLabel *vel, *proper_vel;
 	QLabel *force, *thrust_pg, *thrust_rt;
@@ -27,7 +28,7 @@ Q_OBJECT
 
 	QPushButton *start, *stop, *reset;
 
-	QSlider *F_slider;
+	QSlider *F_slider, *angmom;
 
 protected:
 	void keyPressEvent(QKeyEvent* event);
@@ -41,7 +42,7 @@ public:
 
 public slots:
 	void massChanged(const QString&);
-	void angmomChanged(const QString&);
+	void angmomChanged(int);
 
 	void rChanged(const QString&);
 	void phiChanged(const QString&);
