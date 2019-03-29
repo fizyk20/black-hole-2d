@@ -144,20 +144,6 @@ void GraphicsWidget::drawShip()
 	front = ship->getCartesianDir(ship->getVector(3));
 	double angle = atan2(front[1],front[0]);
 
-	//ship
-	glMatrixMode(GL_MODELVIEW);
-	glPushMatrix();
-	glTranslated(pos[1],pos[2],0.0);
-	glRotated(angle*180/M_PI,0.0,0.0,1.0);
-	glBegin(GL_TRIANGLE_FAN);
-		glColor3d(0.0,1.0,0.0);
-		glVertex2d(0.1,0.0);
-		glVertex2d(0.0,-0.03);
-		glVertex2d(-0.03,0.0);
-		glVertex2d(0.0,0.03);
-	glEnd();
-	glPopMatrix();
-
 	//path
 	QVector<vector4> path = sim->getPath();
 	glBegin(GL_LINE_STRIP);
@@ -169,6 +155,20 @@ void GraphicsWidget::drawShip()
 		}
 		glVertex2d(pos[1],pos[2]);
 	glEnd();
+
+	//ship
+	glMatrixMode(GL_MODELVIEW);
+	glPushMatrix();
+	glTranslated(pos[1],pos[2],0.0);
+	glRotated(angle*180/M_PI,0.0,0.0,1.0);
+	glBegin(GL_TRIANGLE_FAN);
+		glColor3d(0.7,0.7,1.0);
+		glVertex2d(0.1,0.0);
+		glVertex2d(0.0,-0.03);
+		glVertex2d(-0.03,0.0);
+		glVertex2d(0.0,0.03);
+	glEnd();
+	glPopMatrix();
 }
 
 /*************************************************************************/
